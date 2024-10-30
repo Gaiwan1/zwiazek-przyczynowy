@@ -107,7 +107,7 @@ const sketch = (p: p5) => {
   function alignmentVec(boid: Boid, boids: Boid[]): p5.Vector {
     const velocities = BoidsInRange(
       BoidsWithDistanceToBoid(boid, boids),
-      boidViewRange * 0.6,
+      boidViewRange * 1,
     ).map((x) => x.boid.velocity);
     const velocitySum = velocities.reduce(
       (accumulator, currentValue) => accumulator.add(currentValue),
@@ -126,7 +126,7 @@ const sketch = (p: p5) => {
   function separationVec(boid: Boid, boids: Boid[]): p5.Vector {
     const posistions = BoidsInRange(
       BoidsWithDistanceToBoid(boid, boids),
-      boidViewRange * 0.6,
+      boidViewRange * 1.5,
     ).map((x) => x.boid.position);
     const diffSum = posistions
       .map((otherBoidPos) => {
@@ -152,7 +152,7 @@ const sketch = (p: p5) => {
   function cohesionVec(boid: Boid, boids: Boid[]): p5.Vector {
     const posistions = BoidsInRange(
       BoidsWithDistanceToBoid(boid, boids),
-      boidViewRange,
+      boidViewRange * 1,
     ).map((x) => x.boid.position);
     const positionSum = posistions.reduce(
       (accumulator, currentValue) => p5.Vector.add(accumulator, currentValue),
@@ -193,8 +193,8 @@ const sketch = (p: p5) => {
 
   // Settings {{{
   let boids: Boid[];
-  const boidViewRange: number = 150;
-  const amount: number = 150;
+  const boidViewRange: number = 100;
+  const amount: number = 100;
   const maxForce = 999;
   const maxSpeed = 999;
   // Window
