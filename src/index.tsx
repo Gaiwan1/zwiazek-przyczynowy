@@ -205,6 +205,8 @@ const sketch = (p: p5) => {
   const aspectRatio = baseWidth / baseHeight;
   let scaleFactor = 1;
   let chosenBoidID: number;
+  // Style
+  const outlineSize = 5;
 
   // p.windowResized = (): void => {
   //   p.setup();
@@ -222,7 +224,7 @@ const sketch = (p: p5) => {
     p.createCanvas(700, 1000);
     p.colorMode(p.HSB, 100);
     p.frameRate(60);
-    p.strokeWeight(6);
+    p.strokeWeight(outlineSize);
     boids = createBoids(amount);
     chosenBoidID = pickRandomBoid(boids);
   }; // }}}
@@ -271,7 +273,7 @@ const sketch = (p: p5) => {
       chosenBoid,
       boidsNearChosen.map((x) => x.boid),
     );
-    p.strokeWeight(6);
+    p.strokeWeight(outlineSize);
 
     // Show all boids.
     boids.map((boid) => showBoid(boid, boidSize));
