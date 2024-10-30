@@ -218,6 +218,7 @@ const sketch = (p: p5) => {
     //   padding = basePadding * (scaleFactor * 2)
     // }
     // p.pixelDensity(window.devicePixelRatio);
+    p.setAttributes("alpha", false);
     p.createCanvas(700, 1000);
     p.colorMode(p.HSB, 100);
     p.frameRate(60);
