@@ -252,8 +252,8 @@ const sketch = (p: p5) => {
         updateBoidByRules(boid, [
           alignmentVec(boid, boids).setMag(1),
           cohesionVec(boid, boids).setMag(1),
-          separationVec(boid, boids).setMag(1.7),
-          mouseVec(boid).setMag(0.4),
+          separationVec(boid, boids).setMag(1),
+          mouseVec(boid).setMag(0.1),
         ]),
       )
       .map(updateBoid);
