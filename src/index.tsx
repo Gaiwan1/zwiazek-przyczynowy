@@ -261,9 +261,18 @@ const sketch = (p: p5) => {
       boidViewRange * 1.4,
     );
 
-    // Show all boids.
-    p.fill(0, 0, 0, 0);
+
+    // Draw lines from chosen boid to other boids.
+    p.fill(0, 0, 100, 100);
     p.background(255);
+    p.strokeWeight(4);
+    drawLinesToOthers(
+      chosenBoid,
+      boidsNearChosen.map((x) => x.boid),
+    );
+    p.strokeWeight(6);
+
+    // Show all boids.
     boids.map((boid) => showBoid(boid, boidSize));
 
     // Show chosen boid.
@@ -274,14 +283,6 @@ const sketch = (p: p5) => {
       boidSize,
     );
     p.stroke(360, 100, 0, 100);
-
-    // Draw lines from chosen boid to other boids.
-    p.strokeWeight(4);
-    drawLinesToOthers(
-      chosenBoid,
-      boidsNearChosen.map((x) => x.boid),
-    );
-    p.strokeWeight(6);
 
     p.fill(30, 100, 50, 50);
     p.ellipse(p.mouseX, p.mouseY, 100, 100);
