@@ -37,6 +37,11 @@ jobs:
 
       - name: Build production
         run: deno task build
+
+      - name: Upload production-ready build files
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
         #}}}
 
   deploy: # Deploy {{{
@@ -48,11 +53,6 @@ jobs:
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
-      - name: Upload production-ready build files
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
