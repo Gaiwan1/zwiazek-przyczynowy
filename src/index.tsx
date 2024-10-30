@@ -201,7 +201,7 @@ const sketch = (p: p5) => {
   const baseWidth = 1000;
   const baseHeight = 1000;
   const basePadding = 100;
-  const boidSize = 25;
+  const boidSize = 20;
   const aspectRatio = baseWidth / baseHeight;
   let scaleFactor = 1;
   let chosenBoidID: number;
