@@ -261,7 +261,7 @@ const sketch = (p: p5) => {
     const chosenBoid = boids[chosenBoidID];
     const boidsNearChosen: BoidWithDistance[] = BoidsInRange(
       BoidsWithDistanceToBoid(chosenBoid, boids),
-      boidViewRange * 1.4,
+      boidViewRange * 1,
     );
 
 
