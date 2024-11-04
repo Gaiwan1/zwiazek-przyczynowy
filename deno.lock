@@ -622,6 +622,7 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@types/node@^22.8.7",
         "npm:@types/p5@^1.7.6",
         "npm:mathjs@^13.2.0",
         "npm:p5@^1.11.0",

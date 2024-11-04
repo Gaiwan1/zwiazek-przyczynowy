@@ -43,8 +43,8 @@ const sketch = (p: p5) => {
   function updateBoid(boid: Boid): Boid {
     return new Boid(
       boid.position.add(boid.velocity),
-      boid.velocity.add(boid.acceleration).limit(4),
-      boid.acceleration.mult(0).limit(10),
+      boid.velocity.add(boid.acceleration).limit(8),
+      boid.acceleration.mult(0.5).limit(8),
       boid.color,
       boid.maxForce,
       boid.maxSpeed,
@@ -177,10 +177,10 @@ const sketch = (p: p5) => {
       return p.createVector(-1, 0);
     }
     if (boid.position.y < 0 + padding) {
-      return p.createVector(0, 1);
+      return p.createVector(0, 1.2);
     }
     if (boid.position.y > p.height - padding) {
-      return p.createVector(0, -1);
+      return p.createVector(0, -1.2);
     }
     return p.createVector(0, 0);
   }
@@ -209,7 +209,7 @@ const sketch = (p: p5) => {
 
   // Settings {{{
   let boids: Boid[];
-  const boidViewRange: number = 200;
+  const boidViewRange: number = 100;
   const amount: number = 100;
   const maxForce = 99999;
   const maxSpeed = 99999;
@@ -224,7 +224,7 @@ const sketch = (p: p5) => {
   // Style
   const outlineSize = 5;
   // Blink
-  const switchInterval = 4000;
+  const switchInterval = 1000;
   let isActive: boolean;
   let lastSwitchTime: number = 0;
 
@@ -270,10 +270,10 @@ const sketch = (p: p5) => {
     const boidsNew: Boid[] = boids
       .map((boid) =>
         updateBoidByRules(boid, [
-          separationVec(boid, boids).setMag(1.1),
+          separationVec(boid, boids).setMag(1.3),
           alignmentVec(boid, boids).setMag(1),
           cohesionVec(boid, boids).setMag(1),
-          awayFromEdgesVec(boid, 100).setMag(0.3),
+          awayFromEdgesVec(boid, 100).setMag(0.8),
         ]),
       )
       .map(updateBoid);
@@ -290,22 +290,22 @@ const sketch = (p: p5) => {
       lastSwitchTime = p.millis(); // Reset the timer
     }
 
+
+    // Draw lines from chosen boid to other boids.
+    p.stroke(360, 100, 95, 100);
+    p.strokeWeight(outlineSize * 0.8);
+    drawLinesToOthers(
+      chosenBoid,
+      boidsNearChosen.map((x) => x.boid),
+    );
+    p.strokeWeight(outlineSize);
+
     // Show all boids.
     if (isActive) {
       p.fill(0, 0, 100, 100);
       p.stroke(0);
       boids.map((boid) => showBoid(boid, boidSize));
     }
-    // p.text(`${timer}`, p.width / 2, p.height / 2);
-
-    // Draw lines from chosen boid to other boids.
-    p.stroke(360, 100, 95, 100);
-    p.strokeWeight(outlineSize * 1);
-    drawLinesToOthers(
-      chosenBoid,
-      boidsNearChosen.map((x) => x.boid),
-    );
-    p.strokeWeight(outlineSize);
 
     // Show chosen boid.
     if (isActive) {
@@ -317,7 +317,6 @@ const sketch = (p: p5) => {
       boids[chosenBoidID].position.y,
       boidSize,
     );
-    // p.stroke(360, 100, 0, 100);
 
     // p.fill(50, 100, 80, 100);
     // p.strokeWeight(4);
