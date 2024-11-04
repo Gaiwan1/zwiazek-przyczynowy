@@ -1,16 +1,10 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   color-scheme: light;
   background-color: #ffffff;
-  margin: 0px;
-  padding: 0px;
-  border: 0px;
 }
 
 .buttonText {
-  /* color: black; */
-  /* text-decoration: none; */
   font-size: 5rem;
   padding-top: 3%; /* optical center */
 }
@@ -41,8 +35,9 @@ body {
 }
 
 h1 {
+  position: relative;
   padding-top: 5vh;
-  line-height: 1;
+  line-height: 1.5;
   text-align: center;
 }
 
@@ -56,8 +51,8 @@ h1 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  /* align-content: center; */
   flex-wrap: wrap;
   flex-grow: 1;
-  gap: 2vb;
+  gap: 3vb;
 }
