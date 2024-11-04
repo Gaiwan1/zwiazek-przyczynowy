@@ -209,7 +209,7 @@ const sketch = (p: p5) => {
 
   // Settings {{{
   let boids: Boid[];
-  const boidViewRange: number = 100;
+  const boidViewRange: number = 200;
   const amount: number = 100;
   const maxForce = 99999;
   const maxSpeed = 99999;
@@ -219,16 +219,14 @@ const sketch = (p: p5) => {
   const basePadding = 100;
   const boidSize = 20;
   const aspectRatio = baseWidth / baseHeight;
-  const runDuration = 10000; // b seconds (in milliseconds)
-  const intervalTime = 4000; // x seconds (in milliseconds)
   let scaleFactor = 1;
   let chosenBoidID: number;
   // Style
   const outlineSize = 5;
-  // State
-  let intervalId: number;
-  let startTime: number;
-  let on: boolean;
+  // Blink
+  const switchInterval = 4000;
+  let isActive: boolean;
+  let lastSwitchTime: number = 0;
 
   // p.windowResized = (): void => {
   //   p.setup();
@@ -249,7 +247,6 @@ const sketch = (p: p5) => {
     p.strokeWeight(outlineSize);
     boids = createBoids(amount);
     chosenBoidID = pickRandomBoid(boids);
-    startTime = p.millis();
   }; // }}}
 
   // Impure functions {{{
@@ -288,12 +285,13 @@ const sketch = (p: p5) => {
     );
     p.background(255);
 
-    intervalId = setInterval(() => (on = !on), intervalTime);
-    if (p.millis() - startTime >= runDuration) {
-      clearInterval(intervalId);
+    if (p.millis() - lastSwitchTime >= switchInterval) {
+      isActive = !isActive; // Toggle the state
+      lastSwitchTime = p.millis(); // Reset the timer
     }
-    if (on) {
-      // Show all boids.
+
+    // Show all boids.
+    if (isActive) {
       p.fill(0, 0, 100, 100);
       p.stroke(0);
       boids.map((boid) => showBoid(boid, boidSize));
@@ -310,7 +308,9 @@ const sketch = (p: p5) => {
     p.strokeWeight(outlineSize);
 
     // Show chosen boid.
-    p.stroke(360, 100, 0, 100);
+    if (isActive) {
+      p.stroke(360, 100, 0, 100);
+    }
     p.fill(100, 100, 95, 100);
     p.circle(
       boids[chosenBoidID].position.x,
