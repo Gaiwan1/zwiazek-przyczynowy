@@ -5,7 +5,7 @@ root: ~/Desktop/Sync/art/diploma/projektowanie-graficzne/kod/1-uliczne-boids
 startup_window: editor
 
 windows:
-  - editor: nvim ./src/index.tsx
+  - editor: nvim ./index.html
   - server: deno task dev
 
 # Note that the pre and post options have been deprecated and will be replaced by
