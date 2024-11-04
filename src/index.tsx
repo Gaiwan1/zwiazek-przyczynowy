@@ -43,8 +43,8 @@ const sketch = (p: p5) => {
   function updateBoid(boid: Boid): Boid {
     return new Boid(
       boid.position.add(boid.velocity),
-      boid.velocity.add(boid.acceleration).limit(2),
-      boid.acceleration.mult(0),
+      boid.velocity.add(boid.acceleration).limit(4),
+      boid.acceleration.mult(0).limit(10),
       boid.color,
       boid.maxForce,
       boid.maxSpeed,
@@ -126,7 +126,7 @@ const sketch = (p: p5) => {
   function separationVec(boid: Boid, boids: Boid[]): p5.Vector {
     const posistions = BoidsInRange(
       BoidsWithDistanceToBoid(boid, boids),
-      boidViewRange * 1.5,
+      boidViewRange * 1,
     ).map((x) => x.boid.position);
     const diffSum = posistions
       .map((otherBoidPos) => {
@@ -169,6 +169,22 @@ const sketch = (p: p5) => {
       .limit(boid.maxForce);
   }
 
+  function awayFromEdgesVec(boid: Boid, padding: number): p5.Vector {
+    if (boid.position.x < 0 + padding) {
+      return p.createVector(1, 0);
+    }
+    if (boid.position.x > p.width - padding) {
+      return p.createVector(-1, 0);
+    }
+    if (boid.position.y < 0 + padding) {
+      return p.createVector(0, 1);
+    }
+    if (boid.position.y > p.height - padding) {
+      return p.createVector(0, -1);
+    }
+    return p.createVector(0, 0);
+  }
+
   function mouseVec(boid: Boid): p5.Vector {
     return p
       .createVector(p.mouseX, p.mouseY)
@@ -195,18 +211,24 @@ const sketch = (p: p5) => {
   let boids: Boid[];
   const boidViewRange: number = 100;
   const amount: number = 100;
-  const maxForce = 999;
-  const maxSpeed = 999;
+  const maxForce = 99999;
+  const maxSpeed = 99999;
   // Window
   const baseWidth = 1000;
   const baseHeight = 1000;
   const basePadding = 100;
   const boidSize = 20;
   const aspectRatio = baseWidth / baseHeight;
+  const runDuration = 10000; // b seconds (in milliseconds)
+  const intervalTime = 4000; // x seconds (in milliseconds)
   let scaleFactor = 1;
   let chosenBoidID: number;
   // Style
   const outlineSize = 5;
+  // State
+  let intervalId: number;
+  let startTime: number;
+  let on: boolean;
 
   // p.windowResized = (): void => {
   //   p.setup();
@@ -227,6 +249,7 @@ const sketch = (p: p5) => {
     p.strokeWeight(outlineSize);
     boids = createBoids(amount);
     chosenBoidID = pickRandomBoid(boids);
+    startTime = p.millis();
   }; // }}}
 
   // Impure functions {{{
@@ -250,10 +273,10 @@ const sketch = (p: p5) => {
     const boidsNew: Boid[] = boids
       .map((boid) =>
         updateBoidByRules(boid, [
+          separationVec(boid, boids).setMag(1.1),
           alignmentVec(boid, boids).setMag(1),
           cohesionVec(boid, boids).setMag(1),
-          separationVec(boid, boids).setMag(1),
-          mouseVec(boid).setMag(0.1),
+          awayFromEdgesVec(boid, 100).setMag(0.3),
         ]),
       )
       .map(updateBoid);
@@ -263,35 +286,44 @@ const sketch = (p: p5) => {
       BoidsWithDistanceToBoid(chosenBoid, boids),
       boidViewRange * 1,
     );
+    p.background(255);
 
+    intervalId = setInterval(() => (on = !on), intervalTime);
+    if (p.millis() - startTime >= runDuration) {
+      clearInterval(intervalId);
+    }
+    if (on) {
+      // Show all boids.
+      p.fill(0, 0, 100, 100);
+      p.stroke(0);
+      boids.map((boid) => showBoid(boid, boidSize));
+    }
+    // p.text(`${timer}`, p.width / 2, p.height / 2);
 
     // Draw lines from chosen boid to other boids.
-    p.fill(0, 0, 100, 100);
-    p.background(255);
-    p.strokeWeight(4);
+    p.stroke(360, 100, 95, 100);
+    p.strokeWeight(outlineSize * 1);
     drawLinesToOthers(
       chosenBoid,
       boidsNearChosen.map((x) => x.boid),
     );
     p.strokeWeight(outlineSize);
 
-    // Show all boids.
-    boids.map((boid) => showBoid(boid, boidSize));
-
     // Show chosen boid.
-    p.fill(360, 100, 80, 100);
+    p.stroke(360, 100, 0, 100);
+    p.fill(100, 100, 95, 100);
     p.circle(
       boids[chosenBoidID].position.x,
       boids[chosenBoidID].position.y,
       boidSize,
     );
-    p.stroke(360, 100, 0, 100);
+    // p.stroke(360, 100, 0, 100);
 
-    p.fill(30, 100, 50, 50);
-    p.ellipse(p.mouseX, p.mouseY, 100, 100);
-
-    p.fill(50, 100, 50, 100);
-    p.textSize(20);
+    // p.fill(50, 100, 80, 100);
+    // p.strokeWeight(4);
+    // p.textSize(30);
+    // p.text(`${Math.trunc(p.mouseX)}, ${Math.trunc(p.mouseY)}`, p.mouseX, p.mouseY);
+    // p.text(`${p.width}, ${p.height}`, p.width/2, p.height/2);
   };
 };
 
