@@ -43,8 +43,8 @@ const sketch = (p: p5) => {
   function updateBoid(boid: Boid): Boid {
     return new Boid(
       boid.position.add(boid.velocity),
-      boid.velocity.add(boid.acceleration).limit(8),
-      boid.acceleration.mult(0.5).limit(8),
+      boid.velocity.add(boid.acceleration).limit(speed),
+      boid.acceleration.mult(0.5).limit(speed),
       boid.color,
       boid.maxForce,
       boid.maxSpeed,
@@ -209,20 +209,28 @@ const sketch = (p: p5) => {
 
   // Settings {{{
   let boids: Boid[];
-  const boidViewRange: number = 100;
+  const speed: number = 4;
   const amount: number = 100;
-  const maxForce = 99999;
-  const maxSpeed = 99999;
+  const maxForce: number = 99999;
+  const maxSpeed: number = 99999;
+  const boidViewRange: number = 100;
+
   // Window
+  let chosenBoidID: number;
+  const boidSize = 20;
   const baseWidth = 1000;
   const baseHeight = 1000;
   const basePadding = 100;
-  const boidSize = 20;
   const aspectRatio = baseWidth / baseHeight;
   let scaleFactor = 1;
-  let chosenBoidID: number;
+
   // Style
   const outlineSize = 5;
+  const style = getComputedStyle(document.body)
+  const mainColor = style.getPropertyValue('--clr-main');
+  const backgroundColor = style.getPropertyValue('--clr-background');
+  const accentColor = style.getPropertyValue('--clr-accent');
+
   // Blink
   const switchInterval = 1000;
   let isActive: boolean;
@@ -283,7 +291,7 @@ const sketch = (p: p5) => {
       BoidsWithDistanceToBoid(chosenBoid, boids),
       boidViewRange * 1,
     );
-    p.background(255);
+    // p.background(backgroundColor);
 
     if (p.millis() - lastSwitchTime >= switchInterval) {
       isActive = !isActive; // Toggle the state
@@ -292,7 +300,7 @@ const sketch = (p: p5) => {
 
 
     // Draw lines from chosen boid to other boids.
-    p.stroke(360, 100, 95, 100);
+    p.stroke(accentColor);
     p.strokeWeight(outlineSize * 0.8);
     drawLinesToOthers(
       chosenBoid,
@@ -302,16 +310,10 @@ const sketch = (p: p5) => {
 
     // Show all boids.
     if (isActive) {
-      p.fill(0, 0, 100, 100);
       p.stroke(0);
       boids.map((boid) => showBoid(boid, boidSize));
     }
-
-    // Show chosen boid.
-    if (isActive) {
-      p.stroke(360, 100, 0, 100);
-    }
-    p.fill(100, 100, 95, 100);
+    p.fill(accentColor);
     p.circle(
       boids[chosenBoidID].position.x,
       boids[chosenBoidID].position.y,

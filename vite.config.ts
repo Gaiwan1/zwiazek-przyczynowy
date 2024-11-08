@@ -7,10 +7,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        home: resolve(__dirname, "index.html"),
-        boids: resolve(__dirname, "boids/index.html"),
-        fractal: resolve(__dirname, "fractal/index.html"),
-        lorenz: resolve(__dirname, "lorenz/index.html"),
+        home: resolve(__dirname, "src/index.html"),
+        boids: resolve(__dirname, "src/boids/index.html"),
+        fractal: resolve(__dirname, "src/fractal/index.html"),
+        lorenz: resolve(__dirname, "src/lorenz/index.html"),
       },
     },
   },
