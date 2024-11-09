@@ -233,7 +233,7 @@ const sketch = (p: p5) => {
 
   // Blink
   const switchInterval: number = 1000;
-  let isActive: boolean;
+  let showingAll: boolean;
   let lastSwitchTime: number = 0;
 
   // p.windowResized = (): void => {
@@ -291,13 +291,15 @@ const sketch = (p: p5) => {
       BoidsWithDistanceToBoid(chosenBoid, boids),
       boidViewRange * 1,
     );
-    // p.background(backgroundColor);
 
     if (p.millis() - lastSwitchTime >= switchInterval) {
-      isActive = !isActive; // Toggle the state
+      showingAll = !showingAll; // Toggle the state
       lastSwitchTime = p.millis(); // Reset the timer
     }
 
+    if (!showingAll) {
+      p.background(backgroundColor);
+    }
     // Draw lines from chosen boid to other boids.
     p.stroke(accentColor);
     p.strokeWeight(outlineSize * 0.8);
@@ -308,7 +310,7 @@ const sketch = (p: p5) => {
     p.strokeWeight(outlineSize);
 
     // Show all boids.
-    if (isActive) {
+    if (showingAll) {
       p.stroke(mainColor);
       boids.map((boid) => showBoid(boid, boidSize));
     }

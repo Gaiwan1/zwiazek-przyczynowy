@@ -1,50 +1,42 @@
 @import url("src/common.css");
 
-/* * { */
-/*   outline: 2px solid blue; */
-/* } */
+*, html, body {
+  outline: 2px solid green;
+  padding: 0;
+}
 
-body {
-  min-width: 100vw;
-  min-height: 100vh;
-  min-width: 100svw;
+html, body {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  /* align-items: center; */
 }
 
 h1 {
-  /* text-align: center; */
   line-height: 1;
   padding-inline: 1em;
-  padding-block: 0.5em;
-  font-size: clamp(2em, 5vw + 1em, 5em);
-  /* font-size: 2em; */
+  padding-block: 2vh;
+  font-size: clamp(2em, 5vw + 0.5em, 4em);
 }
 
 .buttonText {
-  font-size: 5rem;
+  font-size: clamp(2em, 5vw + 1em, 5em);
   padding-top: 3%; /* optical center */
 }
 
 .button {
-  margin: 0px;
-  padding: 0px;
   border: clamp(0.1em, 0.5vb + 0.5vi, 1em) solid black;
   flex-shrink: 1;
+  flex-basis: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 7/10;
-  min-width: clamp(5rem, 25vw, 20rem);
+  min-width: clamp(5rem, 30vw, 35vh);
 }
 
 .innercontainer {
-  border: 0px;
-  margin: 0px;
-  padding: 0px;
   display: flex;
   flex-direction: row;
   justify-content: center;
