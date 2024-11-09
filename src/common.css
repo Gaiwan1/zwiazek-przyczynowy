@@ -1,31 +1,58 @@
-:root {
-  --clr-main: #040716;
-  --clr-background: #fff9bd;
-  --clr-accent: #ff002a;
-  line-height: 1.5;
-  color-scheme: light;
-  background: var(--clr-background);
-  color: var(--clr-main);
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap');
+
+ /* <uniquifier>: Use a unique and descriptive class name */
+ /* <weight>: Use a value from 100 to 1000 */
+
+.dm-sans-400, :root {
+  font-family: "DM Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
-html {
-  padding: 0px;
+.dm-serif-display-regular , h1, h2, h3, h4, h5, h6 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dm-serif-display-regular-italic {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* h1, h2, h3, h4, h5, h6 */
+
+* {
   margin: 0;
+  padding: 0;
+  /* outline: 2px solid green */
+}
+
+:root {
+  --clr-main: #040716;
+  --clr-background: #FFFFFF;
+  --clr-accent: #ff002a;
+
+  background: var(--clr-background);
+  color: var(--clr-main);
+  line-height: 1.5;
+}
+
+
+html {
   padding-bottom: 10rem;
 }
 
 body {
-  padding: 0px;
-  margin: 0;
   min-height: 100%;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  margin: 0px;
-  padding: 0px;
+  height: 100svh;
   padding-top: 1rem;
   padding-bottom: 3rem;
 }
@@ -43,11 +70,10 @@ body {
   justify-content: center;
   align-content: center;
   align-items: center;
-  margin: 0;
 }
 
 .p5Canvas {
-  max-height: min(140vw, calc(100vh - 8rem)) !important;
+  max-height: min(140vw, calc(100svh - 8rem)) !important;
   width: auto !important;
   aspect-ratio: attr(width) / attr(height);
 }
@@ -72,4 +98,9 @@ p {
   max-width: 75ch;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+html {
+  visibility: visible;
+  opacity: 1;
 }

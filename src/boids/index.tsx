@@ -217,22 +217,22 @@ const sketch = (p: p5) => {
 
   // Window
   let chosenBoidID: number;
-  const boidSize = 20;
-  const baseWidth = 1000;
-  const baseHeight = 1000;
-  const basePadding = 100;
-  const aspectRatio = baseWidth / baseHeight;
-  let scaleFactor = 1;
+  const boidSize: number = 20;
+  const baseWidth: number = 1000;
+  const baseHeight: number = 1000;
+  const basePadding: number = 100;
+  const aspectRatio: number = baseWidth / baseHeight;
+  let scaleFactor: number = 1;
 
   // Style
-  const outlineSize = 5;
-  const style = getComputedStyle(document.body)
-  const mainColor = style.getPropertyValue('--clr-main');
-  const backgroundColor = style.getPropertyValue('--clr-background');
-  const accentColor = style.getPropertyValue('--clr-accent');
+  const outlineSize: number = 5;
+  const style: CSSStyleDeclaration = getComputedStyle(document.body);
+  const mainColor: string = style.getPropertyValue("--clr-main");
+  const backgroundColor: string = style.getPropertyValue("--clr-background");
+  const accentColor: string = style.getPropertyValue("--clr-accent");
 
   // Blink
-  const switchInterval = 1000;
+  const switchInterval: number = 1000;
   let isActive: boolean;
   let lastSwitchTime: number = 0;
 
@@ -298,7 +298,6 @@ const sketch = (p: p5) => {
       lastSwitchTime = p.millis(); // Reset the timer
     }
 
-
     // Draw lines from chosen boid to other boids.
     p.stroke(accentColor);
     p.strokeWeight(outlineSize * 0.8);
@@ -310,7 +309,7 @@ const sketch = (p: p5) => {
 
     // Show all boids.
     if (isActive) {
-      p.stroke(0);
+      p.stroke(mainColor);
       boids.map((boid) => showBoid(boid, boidSize));
     }
     p.fill(accentColor);

@@ -53,3 +53,8 @@ h1 {
   flex-wrap: wrap;
   gap: calc(1vb + 1vi);
 }
+
+html {
+    visibility: visible;
+    opacity: 1;
+}
