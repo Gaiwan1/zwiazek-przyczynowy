@@ -1,15 +1,11 @@
 @import url("src/common.css");
 
-*, html, body {
-  outline: 2px solid green;
-  padding: 0;
-}
-
 html, body {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0;
   /* align-items: center; */
 }
 
@@ -21,7 +17,7 @@ h1 {
 }
 
 .buttonText {
-  font-size: clamp(2em, 5vw + 1em, 5em);
+  font-size: clamp(2em, 10vw + 2em, 8em);
   padding-top: 3%; /* optical center */
 }
 

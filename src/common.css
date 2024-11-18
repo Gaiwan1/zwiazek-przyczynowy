@@ -1,16 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap");
 
- /* <uniquifier>: Use a unique and descriptive class name */
- /* <weight>: Use a value from 100 to 1000 */
-
-.dm-sans-400, :root {
+.dm-sans-400,
+:root {
   font-family: "DM Sans", serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 450;
   font-style: normal;
 }
 
-.dm-serif-display-regular , h1, h2, h3, h4, h5, h6 {
+.dm-serif-display-regular,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "DM Serif Display", serif;
   font-weight: 400;
   font-style: normal;
@@ -24,25 +29,25 @@
 
 /* h1, h2, h3, h4, h5, h6 */
 
-*, html, body {
+*,
+html,
+body {
   margin: 0;
   padding: 0;
   border: 0;
+  /* outline: 2px solid green; */
 }
 
 :root {
   --clr-main: #040716;
-  --clr-background: #FFFFFF;
+  --clr-background: #ffffcc;
   --clr-accent: #ff002a;
+  --border-weight: var(--clr-main) solid 0.2em;
+  --heading-size: clamp(2em, 5vw + 1em, 5em);
 
   background: var(--clr-background);
   color: var(--clr-main);
   line-height: 1.5;
-}
-
-
-html {
-  padding-bottom: 6rem;
 }
 
 body {
@@ -72,6 +77,7 @@ body {
 }
 
 .p5Canvas {
+  border: var(--border-weight);
   max-height: min(140vw, calc(100svh - 0rem)) !important;
   width: auto !important;
   aspect-ratio: attr(width) / attr(height);
@@ -89,14 +95,15 @@ body {
 h1 {
   text-align: center;
   margin: 0.5rem 0;
-  font-size: clamp(2em, 5vw + 1em, 5em);
+  font-size: var(--heading-size);
 }
 
 p {
-  font-size: 1.3rem;
-  max-width: 75ch;
+  font-size: 1.5rem;
+  max-width: 60ch;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
+  padding-left: 5rem;
 }
 
 html {
