@@ -17,7 +17,7 @@ const sketch = (p: p5) => {
   let lastSwitchTime: number = 0;
 
   // Lorenz
-  const deltaTime = 0.015;
+  const deltaTime = 0.01;
   let σ: number;
   let ρ: number;
   let β: number;
@@ -45,6 +45,10 @@ const sketch = (p: p5) => {
     σ = p.random(10, 20);
     ρ = p.random(10, 40);
     β = p.random(2, 10) / p.random(1, 5);
+
+    // σ = p.random(-100, 10);
+    // ρ = p.random(-100, 10);
+    // β = p.random(-100, 10) / p.random(-100, 100);
   }; // }}}
 
   // Impure functions {{{
@@ -72,6 +76,7 @@ const sketch = (p: p5) => {
     p.beginShape();
     for (const vec of vectors) {
       // p.curveVertex(vec.x * p.random(p.frameCount* 0.01), vec.y * p.random(p.frameCount * 0.01), 0);
+      // p.curveVertex(vec.x + p.random(-p.frameCount * 0.01, p.frameCount * 0.01), vec.y, 0);
       p.curveVertex(vec.x, vec.y, 0);
       // p.point(vec.x, vec.y);
     }

@@ -267,56 +267,56 @@ const sketch = (p: p5) => {
   // }}}
 
   p.draw = (): void => {
-    const boidsNew: Boid[] = boids
-      .map((boid) =>
-        updateBoidByRules(boid, [
-          separationVec(boid, boids).setMag(1.3),
-          alignmentVec(boid, boids).setMag(1),
-          cohesionVec(boid, boids).setMag(1),
-          awayFromEdgesVec(boid, 100).setMag(0.8),
-        ]),
-      )
-      .map(updateBoid);
-    boids = boidsNew;
-    const chosenBoid = boids[chosenBoidID];
-    const boidsNearChosen: BoidWithDistance[] = BoidsInRange(
-      BoidsWithDistanceToBoid(chosenBoid, boids),
-      boidViewRange * 1,
-    );
-    p.background(255);
-
-    if (p.millis() - lastSwitchTime >= switchInterval) {
-      isActive = !isActive; // Toggle the state
-      lastSwitchTime = p.millis(); // Reset the timer
-    }
-
-
-    // Draw lines from chosen boid to other boids.
-    p.stroke(360, 100, 95, 100);
-    p.strokeWeight(outlineSize * 0.8);
-    drawLinesToOthers(
-      chosenBoid,
-      boidsNearChosen.map((x) => x.boid),
-    );
-    p.strokeWeight(outlineSize);
-
-    // Show all boids.
-    if (isActive) {
-      p.fill(0, 0, 100, 100);
-      p.stroke(0);
-      boids.map((boid) => showBoid(boid, boidSize));
-    }
-
-    // Show chosen boid.
-    if (isActive) {
-      p.stroke(360, 100, 0, 100);
-    }
-    p.fill(100, 100, 95, 100);
-    p.circle(
-      boids[chosenBoidID].position.x,
-      boids[chosenBoidID].position.y,
-      boidSize,
-    );
+    // const boidsNew: Boid[] = boids
+    //   .map((boid) =>
+    //     updateBoidByRules(boid, [
+    //       separationVec(boid, boids).setMag(1.3),
+    //       alignmentVec(boid, boids).setMag(1),
+    //       cohesionVec(boid, boids).setMag(1),
+    //       awayFromEdgesVec(boid, 100).setMag(0.8),
+    //     ]),
+    //   )
+    //   .map(updateBoid);
+    // boids = boidsNew;
+    // const chosenBoid = boids[chosenBoidID];
+    // const boidsNearChosen: BoidWithDistance[] = BoidsInRange(
+    //   BoidsWithDistanceToBoid(chosenBoid, boids),
+    //   boidViewRange * 1,
+    // );
+    // p.background(255);
+    //
+    // if (p.millis() - lastSwitchTime >= switchInterval) {
+    //   isActive = !isActive; // Toggle the state
+    //   lastSwitchTime = p.millis(); // Reset the timer
+    // }
+    //
+    //
+    // // Draw lines from chosen boid to other boids.
+    // p.stroke(360, 100, 95, 100);
+    // p.strokeWeight(outlineSize * 0.8);
+    // drawLinesToOthers(
+    //   chosenBoid,
+    //   boidsNearChosen.map((x) => x.boid),
+    // );
+    // p.strokeWeight(outlineSize);
+    //
+    // // Show all boids.
+    // if (isActive) {
+    //   p.fill(0, 0, 100, 100);
+    //   p.stroke(0);
+    //   boids.map((boid) => showBoid(boid, boidSize));
+    // }
+    //
+    // // Show chosen boid.
+    // if (isActive) {
+    //   p.stroke(360, 100, 0, 100);
+    // }
+    // p.fill(100, 100, 95, 100);
+    // p.circle(
+    //   boids[chosenBoidID].position.x,
+    //   boids[chosenBoidID].position.y,
+    //   boidSize,
+    // );
 
     // p.fill(50, 100, 80, 100);
     // p.strokeWeight(4);

@@ -6,6 +6,15 @@ html, body {
   justify-content: center;
 }
 
+a.fillDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
 h1 {
   line-height: 1;
   padding-block: 2vh;
@@ -14,10 +23,12 @@ h1 {
 
 .buttonText {
   font-size: clamp(2em, 10vw + 2em, 8em);
+  color: var(--clr-accent);
   padding-top: 3%; /* optical center */
 }
 
 .button {
+  box-shadow: 3px 3px 5px 0px rgba(4, 7, 22, 0.5);
   border: clamp(0.1em, 0.5vb + 0.5vi, 1em) solid black;
   border: var(--border-weight);
   flex-shrink: 1;
