@@ -252,7 +252,7 @@ const sketch = (p: p5) => {
     p.createCanvas(700, 1000);
     p.colorMode(p.HSB, 100);
     p.frameRate(60);
-    p.strokeWeight(outlineSize);
+    p.strokeWeight(outlineSize * 0.5);
     boids = createBoids(amount);
     chosenBoidID = pickRandomBoid(boids);
   }; // }}}
@@ -292,29 +292,36 @@ const sketch = (p: p5) => {
       boidViewRange * 1,
     );
 
+    p.fill(accentColor);
+    p.background(backgroundColor);
     if (p.millis() - lastSwitchTime >= switchInterval) {
       showingAll = !showingAll; // Toggle the state
       lastSwitchTime = p.millis(); // Reset the timer
     }
 
     if (!showingAll) {
-      p.background(backgroundColor);
     }
+
     // Draw lines from chosen boid to other boids.
     p.stroke(accentColor);
-    p.strokeWeight(outlineSize * 0.8);
+    p.strokeWeight(outlineSize);
     drawLinesToOthers(
       chosenBoid,
       boidsNearChosen.map((x) => x.boid),
     );
-    p.strokeWeight(outlineSize);
+      p.strokeWeight(outlineSize * 0.5);
 
     // Show all boids.
     if (showingAll) {
-      p.stroke(mainColor);
+      // p.stroke(mainColor);
+      p.stroke(1,1,1,0);
+      p.strokeWeight(outlineSize * 0.5);
+      // p.stroke(1,1,1,0);
       boids.map((boid) => showBoid(boid, boidSize));
     }
-    p.fill(accentColor);
+    // p.stroke(mainColor);
+    p.stroke(1,1,1,0);
+    p.fill(mainColor);
     p.circle(
       boids[chosenBoidID].position.x,
       boids[chosenBoidID].position.y,

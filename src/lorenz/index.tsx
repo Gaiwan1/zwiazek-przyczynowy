@@ -71,7 +71,8 @@ const sketch = (p: p5) => {
 
     p.beginShape();
     for (const vec of vectors) {
-      p.curveVertex(vec.x * p.random(p.frameCount* 0.01), vec.y * p.random(p.frameCount * 0.01), 0);
+      // p.curveVertex(vec.x * p.random(p.frameCount* 0.01), vec.y * p.random(p.frameCount * 0.01), 0);
+      p.curveVertex(vec.x, vec.y, 0);
       // p.point(vec.x, vec.y);
     }
     p.endShape();
