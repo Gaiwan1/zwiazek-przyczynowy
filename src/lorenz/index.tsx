@@ -21,9 +21,9 @@ const sketch = (p: p5) => {
   let σ: number;
   let ρ: number;
   let β: number;
-  let x = 1;
-  let y = 1;
-  let z = 1;
+  let x = p.random(-30, 30);
+  let y = p.random(-30, 30);
+  let z = p.random(-30, 30);
   let vectors: p5.Vector[] = [];
 
   // function lorenzPoints(x: number, y: number, z: number): number[] {
@@ -42,8 +42,8 @@ const sketch = (p: p5) => {
     p.fill(0, 0, 0, 0);
     p.stroke(accentColor);
 
-    σ = p.random(10, 20);
-    ρ = p.random(10, 40);
+    σ = 10;
+    ρ = 28;
     β = 8.0 / 3;
 
     // σ = p.random(-100, 10);
