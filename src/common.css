@@ -1,31 +1,37 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap"); */
+/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.dm-sans-400,
+.montserrat-body
 .buttonText,
 :root {
-  font-family: "DM Sans", serif;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  /* letter-spacing: 10px; */
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.montserrat-header {
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
-.dm-serif-display-regular,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "DM Serif Display", serif;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
-.dm-serif-display-regular-italic {
-  font-family: "DM Serif Display", serif;
-  font-weight: 400;
-  font-style: italic;
-}
 
 *,
 html,
@@ -37,9 +43,14 @@ body {
 }
 
 :root {
-  --clr-main: #040716;
-  --clr-background: #fcf7f2;
+  /* --clr-main: #040716; */
+  /* --clr-background: #fcf7f2; */
+  /* --clr-accent: #ff002a; */
+
+  --clr-main: #000000;
+  --clr-background: #FFFFFF;
   --clr-accent: #ff002a;
+
   --border-weight: var(--clr-main) solid 0.2em;
   --heading-size: clamp(2em, 5vw + 1em, 5em);
 
@@ -85,27 +96,18 @@ body {
   aspect-ratio: attr(width) / attr(height);
 }
 
-p {
-  font-size: 1.5rem;
-  max-width: 60ch;
-  margin: 0 auto;
-  /* padding: 0 10vw; */
-  padding-right: 2svw;
-  padding-left: 4svw;
-}
-
 @media (max-width: 61vb) {
   body, html {
     overflow-x: hidden;
   }
   p {
-  padding-left: 8svw;
+  padding-left: 4svw;
   }
   .canvas-wrapper {
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  justify-items: center;
+  justify-content: top;
+  align-content: top;
+  align-items: top;
+  justify-items: top;
   }
   .container {
     padding-top: 0rem;
@@ -114,6 +116,16 @@ p {
     border: 0rem solid var(--clr-main);
   }
 }
+
+p {
+  font-size: 1.5rem;
+  max-width: 60ch;
+  text-align: justify;
+  margin: 0 auto;
+  padding-right: 5svw;
+  padding-left: 5svw;
+}
+
 
 h1 {
   text-align: center;
