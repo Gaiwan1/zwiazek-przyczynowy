@@ -62,6 +62,7 @@ body {
     justify-content: center;
     align-content: center;
     align-items: center;
+    justify-items: center;
   }
 }
 
@@ -71,18 +72,41 @@ body {
   justify-content: center;
   align-content: center;
   align-items: center;
+  justify-items: center;
 }
 
 .p5Canvas {
-  border: var(--border-weight);
+  /* border: var(--border-weight); */
   max-height: 90svh;
+  flex-shrink: 1;
   /* max-height: min(140vw, calc(100svh - 0rem)) !important; */
   /* min-height: calc(50svh + 50svw) !important; */
   width: auto !important;
   aspect-ratio: attr(width) / attr(height);
 }
 
+p {
+  font-size: 1.5rem;
+  max-width: 60ch;
+  margin: 0 auto;
+  /* padding: 0 10vw; */
+  padding-right: 2svw;
+  padding-left: 4svw;
+}
+
 @media (max-width: 61vb) {
+  body, html {
+    overflow-x: hidden;
+  }
+  p {
+  padding-left: 8svw;
+  }
+  .canvas-wrapper {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  }
   .container {
     padding-top: 0rem;
   }
@@ -95,14 +119,6 @@ h1 {
   text-align: center;
   margin: 0.5rem 0;
   font-size: var(--heading-size);
-}
-
-p {
-  font-size: 1.5rem;
-  max-width: 60ch;
-  margin: 0 auto;
-  padding: 0 2rem;
-  padding-left: 3svw;
 }
 
 html {
