@@ -225,7 +225,7 @@ const sketch = (p: p5) => {
   let scaleFactor: number = 1;
 
   // Style
-  const outlineSize: number = 5;
+  const outlineSize: number = 2.5;
   const style: CSSStyleDeclaration = getComputedStyle(document.body);
   const mainColor: string = style.getPropertyValue("--clr-main");
   const backgroundColor: string = style.getPropertyValue("--clr-background");
@@ -252,6 +252,7 @@ const sketch = (p: p5) => {
     p.createCanvas(700, 1000);
     p.colorMode(p.HSB, 100);
     p.frameRate(60);
+    p.fill(backgroundColor)
     p.strokeWeight(outlineSize * 0.5);
     boids = createBoids(amount);
     chosenBoidID = pickRandomBoid(boids);
@@ -292,7 +293,6 @@ const sketch = (p: p5) => {
       boidViewRange * 1,
     );
 
-    p.fill(accentColor);
     p.background(backgroundColor);
     if (p.millis() - lastSwitchTime >= switchInterval) {
       showingAll = !showingAll; // Toggle the state
@@ -309,24 +309,26 @@ const sketch = (p: p5) => {
       chosenBoid,
       boidsNearChosen.map((x) => x.boid),
     );
-      p.strokeWeight(outlineSize * 0.5);
+      p.strokeWeight(outlineSize * 1);
 
     // Show all boids.
     if (showingAll) {
       // p.stroke(mainColor);
-      p.stroke(1,1,1,0);
-      p.strokeWeight(outlineSize * 0.5);
+      // p.stroke(1,1,1,0);
+      p.strokeWeight(outlineSize * 1);
       // p.stroke(1,1,1,0);
       boids.map((boid) => showBoid(boid, boidSize));
     }
-    // p.stroke(mainColor);
-    p.stroke(1,1,1,0);
-    p.fill(mainColor);
+
+    // Show chosen boid.
+    p.stroke(mainColor);
+    p.strokeWeight(outlineSize * 1);
     p.circle(
       boids[chosenBoidID].position.x,
       boids[chosenBoidID].position.y,
       boidSize,
     );
+    p.strokeWeight(outlineSize * 1);
 
     // p.fill(50, 100, 80, 100);
     // p.strokeWeight(4);

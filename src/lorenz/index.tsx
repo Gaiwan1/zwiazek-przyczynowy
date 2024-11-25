@@ -5,7 +5,7 @@ import * as math from "mathjs";
 
 const sketch = (p: p5) => {
   // Style
-  const outlineSize: number = 5;
+  const outlineSize: number = 2.5;
   const style: CSSStyleDeclaration = getComputedStyle(document.body);
   const mainColor: string = style.getPropertyValue("--clr-main");
   const backgroundColor: string = style.getPropertyValue("--clr-background");
@@ -38,13 +38,13 @@ const sketch = (p: p5) => {
     p.createCanvas(700, 1000);
     p.colorMode(p.HSB, 100);
     p.frameRate(60);
-    // p.strokeWeight(outlineSize);
+    p.strokeWeight(outlineSize);
     p.fill(0, 0, 0, 0);
     p.stroke(accentColor);
 
     σ = p.random(10, 20);
     ρ = p.random(10, 40);
-    β = p.random(2, 10) / p.random(1, 5);
+    β = 8.0 / 3;
 
     // σ = p.random(-100, 10);
     // ρ = p.random(-100, 10);
@@ -81,9 +81,10 @@ const sketch = (p: p5) => {
       // p.point(vec.x, vec.y);
     }
     p.endShape();
-    p.strokeWeight(1);
     p.stroke(accentColor);
-    p.point(x, y);
+    p.strokeWeight(0.2);
+    p.fill(backgroundColor);
+    p.circle(x, y, 2);
 
     // console.log(x, y);
     // console.log(vectors);

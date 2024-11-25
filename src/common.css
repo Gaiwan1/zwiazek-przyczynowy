@@ -5,7 +5,7 @@
 :root {
   font-family: "DM Sans", serif;
   font-optical-sizing: auto;
-  font-weight: 450;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -26,8 +26,6 @@ h6 {
   font-weight: 400;
   font-style: italic;
 }
-
-/* h1, h2, h3, h4, h5, h6 */
 
 *,
 html,
@@ -104,7 +102,7 @@ p {
   max-width: 60ch;
   margin: 0 auto;
   padding: 0 2rem;
-  padding-left: 2svw;
+  padding-left: 3svw;
 }
 
 html {
