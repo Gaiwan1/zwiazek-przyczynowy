@@ -1,25 +1,17 @@
 /* @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap"); */
 /* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-.montserrat-body
+.montserrat-body,
 .buttonText,
 :root {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  /* letter-spacing: 10px; */
   font-weight: 400;
   font-style: normal;
 }
 
-
-.montserrat-header {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
+.montserrat-header,
 h1,
 h2,
 h3,
@@ -28,10 +20,10 @@ h5,
 h6 {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
+  line-height: 1;
   font-weight: 400;
   font-style: normal;
 }
-
 
 *,
 html,
@@ -43,19 +35,23 @@ body {
 }
 
 :root {
+  overflow-x: hidden;
   /* --clr-main: #040716; */
   /* --clr-background: #fcf7f2; */
   /* --clr-accent: #ff002a; */
 
   --clr-main: #000000;
-  --clr-background: #FFFFFF;
+  --clr-background: #ffffff;
   --clr-accent: #ff002a;
 
   --border-weight: var(--clr-main) solid 0.2em;
-  --heading-size: clamp(2em, 5vw + 1em, 5em);
+  /* --heading-size: clamp(2em, 5vw + 1em, 5em); */
+  --heading-size: 4.7083em;
+  --body-size: 1.1667em;
 
   background: var(--clr-background);
   color: var(--clr-main);
+  font-size: var(--body-size);
   line-height: 1.5;
 }
 
@@ -78,7 +74,6 @@ body {
 }
 
 .canvas-wrapper {
-  padding-top: 2svh;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -97,17 +92,14 @@ body {
 }
 
 @media (max-width: 61vb) {
-  body, html {
-    overflow-x: hidden;
-  }
   p {
-  padding-left: 4svw;
+    padding-left: 4svw;
   }
   .canvas-wrapper {
-  justify-content: top;
-  align-content: top;
-  align-items: top;
-  justify-items: top;
+    justify-content: top;
+    align-content: top;
+    align-items: top;
+    justify-items: top;
   }
   .container {
     padding-top: 0rem;
@@ -118,14 +110,12 @@ body {
 }
 
 p {
-  font-size: 1.5rem;
   max-width: 60ch;
   text-align: justify;
   margin: 0 auto;
   padding-right: 5svw;
   padding-left: 5svw;
 }
-
 
 h1 {
   text-align: center;
