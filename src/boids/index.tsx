@@ -1,5 +1,6 @@
 // Imports {{{
 import "./index.css";
+import * as common from "../common.tsx";
 
 import p5, { Vector } from "p5";
 import * as math from "mathjs";
@@ -104,6 +105,7 @@ const sketch = (p: p5) => {
     return posistionsSum.div(posistions.length);
   }
 
+  // Vectors {{{
   function alignmentVec(boid: Boid, boids: Boid[]): p5.Vector {
     const velocities = BoidsInRange(
       BoidsWithDistanceToBoid(boid, boids),
@@ -193,69 +195,37 @@ const sketch = (p: p5) => {
       .sub(boid.velocity)
       .limit(boid.maxForce);
   }
-
-  // function updateCanvasDimensions(): any {
-  //   if (p.windowWidth / p.windowHeight > aspectRatio) {
-  //     return {
-  //       canvasWidth: p.windowHeight * aspectRatio,
-  //       canvasHeight: p.windowHeight,
-  //     };
-  //   } else
-  //     return {
-  //       canvasWidth: p.windowWidth,
-  //       canvasHeight: p.windowWidth / aspectRatio,
-  //     };
-  // }
+  // }}}
 
   // Settings {{{
   let boids: Boid[];
   const speed: number = 4;
-  const amount: number = 100;
+  const amount: number = 70;
   const maxForce: number = 99999;
   const maxSpeed: number = 99999;
   const boidViewRange: number = 100;
-
-  // Window
+  const boidSize = 20;
   let chosenBoidID: number;
-  const boidSize: number = 20;
-  const baseWidth: number = 1000;
-  const baseHeight: number = 1000;
-  const basePadding: number = 100;
-  const aspectRatio: number = baseWidth / baseHeight;
-  let scaleFactor: number = 1;
-
-  // Style
-  const outlineSize: number = 2.5;
-  const style: CSSStyleDeclaration = getComputedStyle(document.body);
-  const mainColor: string = style.getPropertyValue("--clr-main");
-  const backgroundColor: string = style.getPropertyValue("--clr-background");
-  const accentColor: string = style.getPropertyValue("--clr-accent");
 
   // Blink
   const switchInterval: number = 1000;
   let showingAll: boolean;
   let lastSwitchTime: number = 0;
 
-  // p.windowResized = (): void => {
-  //   p.setup();
-  // };
+  let ranSetup = false;
+
+  p.windowResized = (): void => {
+    p.setup();
+  };
 
   p.setup = (): void => {
-    // const { canvasWidth, canvasHeight } = updateCanvasDimensions();
-    // scaleFactor = (baseWidth + baseHeight) / (canvasWidth + baseHeight)
-    // let padding = basePadding * scaleFactor
-    // if (scaleFactor < 1.3) {
-    //   padding = basePadding * (scaleFactor * 2)
-    // }
-    // p.pixelDensity(window.devicePixelRatio);
-    p.setAttributes("alpha", false);
-    p.createCanvas(700, 1000);
-    p.colorMode(p.HSB, 100);
-    p.frameRate(60);
-    p.fill(backgroundColor)
-    p.strokeWeight(outlineSize * 0.5);
-    boids = createBoids(amount);
-    chosenBoidID = pickRandomBoid(boids);
+    common.sharedSetup(p);
+
+    if (ranSetup === false) {
+      boids = createBoids(amount);
+      chosenBoidID = pickRandomBoid(boids);
+    }
+    ranSetup = true;
   }; // }}}
 
   // Impure functions {{{
@@ -276,6 +246,7 @@ const sketch = (p: p5) => {
   // }}}
 
   p.draw = (): void => {
+    common.sharedDraw(p);
     const boidsNew: Boid[] = boids
       .map((boid) =>
         updateBoidByRules(boid, [
@@ -293,7 +264,7 @@ const sketch = (p: p5) => {
       boidViewRange * 1,
     );
 
-    p.background(backgroundColor);
+    p.background(common.backgroundColor);
     if (p.millis() - lastSwitchTime >= switchInterval) {
       showingAll = !showingAll; // Toggle the state
       lastSwitchTime = p.millis(); // Reset the timer
@@ -303,40 +274,27 @@ const sketch = (p: p5) => {
     }
 
     // Draw lines from chosen boid to other boids.
-    p.stroke(accentColor);
-    p.strokeWeight(outlineSize);
+    p.stroke(common.accentColor);
     drawLinesToOthers(
       chosenBoid,
       boidsNearChosen.map((x) => x.boid),
     );
-      p.strokeWeight(outlineSize * 1);
 
     // Show all boids.
     if (showingAll) {
-      // p.stroke(mainColor);
-      // p.stroke(1,1,1,0);
-      p.strokeWeight(outlineSize * 1);
-      // p.stroke(1,1,1,0);
       boids.map((boid) => showBoid(boid, boidSize));
     }
 
     // Show chosen boid.
-    p.stroke(mainColor);
-    p.strokeWeight(outlineSize * 1);
+    p.stroke(common.mainColor);
     p.circle(
       boids[chosenBoidID].position.x,
       boids[chosenBoidID].position.y,
       boidSize,
     );
-    p.strokeWeight(outlineSize * 1);
-
-    // p.fill(50, 100, 80, 100);
-    // p.strokeWeight(4);
-    // p.textSize(30);
-    // p.text(`${Math.trunc(p.mouseX)}, ${Math.trunc(p.mouseY)}`, p.mouseX, p.mouseY);
-    // p.text(`${p.width}, ${p.height}`, p.width/2, p.height/2);
   };
 };
 
 const canvas = document.getElementById("id-canvas-wrapper"); // }}}
 new p5(sketch, canvas!);
+// vi: foldmethod=marker
