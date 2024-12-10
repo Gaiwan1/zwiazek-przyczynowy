@@ -6,23 +6,36 @@ import * as math from "mathjs";
 
 const sketch = (p: p5) => {
   const pointSize = 10;
-  const iterations = 100;
+  const iterations = 10;
+  const mappingRange = 2;
   const cConstant: math.Complex = math.complex(1, 1);
 
-  // Mandelbrot
-  function mandelbrotPolynomial(x: math.Complex, c: math.Complex) {
-    return math.add(math.pow(x, 2), c);
+  // Stupid math.js library returns some broken internal type from calculations
+  function toComplex(value: math.MathType): math.Complex {
+    const complex = value as math.Complex;
+    return complex;
   }
 
-  function mandelbrotP(x: math.Complex) {
+  function mandelbrotPolynomial(
+    x: math.Complex,
+    c: math.Complex,
+  ): math.Complex {
+    return math.add(math.multiply(x, x), c);
+  }
+
+  //
+  function mandelbrotP(x: math.Complex): math.Complex {
     // [P]artial
     return mandelbrotPolynomial(x, cConstant);
   }
 
+  function getMag(x: math.Complex): number {
+    const complexVector = p.createVector(x.re, x.im);
+    return p.createVector(0, 0).dist(complexVector);
+  }
+
   p.setup = (): void => {
     common.sharedSetup(p);
-    // let a = map(x, 0, width, -aspect_ratio * mapping_range, aspect_ratio * mapping_range); // map(original value, original range1, original range2, final range1, final range2)
-    // let b = map(y, 0, height, -mapping_range, mapping_range);
   };
 
   p.windowResized = (): void => {
@@ -30,14 +43,32 @@ const sketch = (p: p5) => {
   };
 
   p.draw = (): void => {
+    p.translate(p.width / 2, p.height / 2);
     common.sharedDraw(p);
-    let seed = math.complex(p.mouseX, p.mouseY);
-    p.fill(255);
-    p.circle(seed.re, seed.im, pointSize);
-    const seed2 = mandelbrotP(seed);
-    // console.log(seed)
-    console.log(seed2);
-    // p.circle(math.re(seed), math.im(seed), pointSize)
+    p.loadPixels();
+    for (let x = 0; x < p.width; x++) {
+      for (let y = 0; y < p.height; y++) {
+        // const xMapped = p.map(x, 0, p.width, -mappingRange, mappingRange);
+        // const yMapped = p.map(y, 0, p.height, -mappingRange, mappingRange);
+
+        let n = 0;
+        let c = math.complex(p.width/10, p.height/10);
+        let z = math.complex(0, 0)
+        while (n < iterations) {
+          const nextZ = mandelbrotPolynomial(z, c);
+          if (getMag(z) > 16) {
+            break;
+          }
+          z = nextZ;
+          n++;
+        }
+        const brightness = p.map(n, 0, iterations, 255, 0);
+        // const brightness = 0;
+        const colorVal = p.color(brightness);
+        p.set(x, y, colorVal);
+      }
+    }
+    p.updatePixels();
   };
 };
 

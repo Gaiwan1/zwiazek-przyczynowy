@@ -6,6 +6,8 @@ import p5, { Vector } from "p5";
 import * as math from "mathjs";
 //}}}
 
+
+const canvas = document.getElementById("id-canvas-wrapper"); 
 const sketch = (p: p5) => {
   // Basic Boid {{{
   class Boid {
@@ -204,7 +206,7 @@ const sketch = (p: p5) => {
   const maxForce: number = 99999;
   const maxSpeed: number = 99999;
   const boidViewRange: number = 100;
-  const boidSize = 20;
+  const boidSize = 17;
   let chosenBoidID: number;
 
   // Blink
@@ -244,7 +246,6 @@ const sketch = (p: p5) => {
     otherBoids.map((otherBoid) => vLine(otherBoid.position, boid.position));
   }
   // }}}
-
   p.draw = (): void => {
     common.sharedDraw(p);
     const boidsNew: Boid[] = boids
@@ -295,6 +296,6 @@ const sketch = (p: p5) => {
   };
 };
 
-const canvas = document.getElementById("id-canvas-wrapper"); // }}}
+// }}}
 new p5(sketch, canvas!);
 // vi: foldmethod=marker

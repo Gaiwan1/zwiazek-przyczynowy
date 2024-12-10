@@ -3,7 +3,8 @@ import p5, { Vector } from "p5";
 export const outlineSize: number = 2.5;
 export const style: CSSStyleDeclaration = getComputedStyle(document.body);
 export const mainColor: string = style.getPropertyValue("--clr-main");
-export const backgroundColor: string = style.getPropertyValue("--clr-background");
+export const backgroundColor: string =
+  style.getPropertyValue("--clr-background");
 export const accentColor: string = style.getPropertyValue("--clr-accent");
 
 export const baseWidth: number = 700;
@@ -11,27 +12,43 @@ export const baseHeight: number = 1000;
 export const aspectRatio: number = baseWidth / baseHeight;
 export let scaleFactor: number = 1;
 
-export function updateCanvasDimensions(p: p5): any {
-  if (p.windowWidth / p.windowHeight > aspectRatio) {
+export type Dimensions = {
+  width: number;
+  height: number;
+};
+
+export function updateCanvasDimensions(p: p5): Dimensions {
+  const canvasWrapper = document.getElementById("id-canvas-wrapper");
+  if (canvasWrapper !== null) {
+    const canvasDimensions = canvasWrapper.getBoundingClientRect();
     return {
-      canvasWidth: p.windowHeight * aspectRatio,
-      canvasHeight: p.windowHeight,
+      width: canvasDimensions.width,
+      height: canvasDimensions.height,
     };
-  } else
-    return {
-      canvasWidth: p.windowWidth,
-      canvasHeight: p.windowWidth / aspectRatio,
-    };
+  } else {
+    return { width: p.windowHeight, height: p.windowHeight };
+  }
+  // if (p.windowWidth / p.windowHeight > aspectRatio) {
+  //   return {
+  //     canvasWidth: p.windowHeight * aspectRatio,
+  //     canvasHeight: p.windowHeight,
+  //   };
+  // } else
+  //   return {
+  //     canvasWidth: p.windowWidth,
+  //     canvasHeight: p.windowWidth / aspectRatio,
+  //   };
 }
 
 export function sharedSetup(p: p5): void {
-  const { canvasWidth, canvasHeight } = updateCanvasDimensions(p);
-  scaleFactor = (baseWidth + baseHeight) / (canvasWidth + baseHeight);
+  const { width, height } = updateCanvasDimensions(p);
+  // scaleFactor = (baseWidth + baseHeight) / (width + baseHeight);
+  scaleFactor = (baseWidth + baseHeight) / (width + baseHeight);
   p.pixelDensity(window.devicePixelRatio);
   p.setAttributes("alpha", false);
   p.setAttributes("antialias", true);
   p.smooth();
-  p.createCanvas(canvasWidth, canvasHeight);
+  p.createCanvas(width, height);
   p.colorMode(p.HSB, 100);
   p.frameRate(60);
 }

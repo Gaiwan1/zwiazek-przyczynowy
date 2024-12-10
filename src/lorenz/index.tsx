@@ -23,8 +23,6 @@ const sketch = (p: p5) => {
   let lorenz: p5.Vector[] = [];
   let lorenz2: p5.Vector[] = [];
 
-  const scaledOutlineSize = common.outlineSize * 0.09
-
   p.setup = (): void => {
     common.sharedSetup(p);
   };
@@ -35,11 +33,13 @@ const sketch = (p: p5) => {
 
   p.draw = (): void => {
     common.sharedDraw(p);
+    const scale = 1 * ((p.width + p.height) / 110)
+    const scaledOutlineSize = common.outlineSize * (1.3 / scale)
     p.strokeWeight(scaledOutlineSize)
     p.fill(0, 0, 0, 0);
 
     p.translate(p.width / 2, p.height / 2);
-    p.scale(15);
+    p.scale(scale);
 
     const dx = σ * (y - x) * deltaTime;
     const dy = (x * (ρ - z) - y) * deltaTime;
