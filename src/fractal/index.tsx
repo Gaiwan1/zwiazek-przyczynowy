@@ -20,7 +20,7 @@ const sketch = (p: p5) => {
     x: math.Complex,
     c: math.Complex,
   ): math.Complex {
-    return math.add(math.multiply(x, x), c);
+    return math.add(toComplex(math.multiply(x, x)), c);
   }
 
   //
