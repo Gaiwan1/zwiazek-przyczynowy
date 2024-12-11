@@ -6,8 +6,7 @@ import p5, { Vector } from "p5";
 import * as math from "mathjs";
 //}}}
 
-
-const canvas = document.getElementById("id-canvas-wrapper"); 
+const canvas = document.getElementById("id-canvas-wrapper");
 const sketch = (p: p5) => {
   // Basic Boid {{{
   class Boid {
@@ -181,10 +180,10 @@ const sketch = (p: p5) => {
       return p.createVector(-1, 0);
     }
     if (boid.position.y < 0 + padding) {
-      return p.createVector(0, 1.2);
+      return p.createVector(0, 1);
     }
     if (boid.position.y > p.height - padding) {
-      return p.createVector(0, -1.2);
+      return p.createVector(0, -1);
     }
     return p.createVector(0, 0);
   }
@@ -205,15 +204,14 @@ const sketch = (p: p5) => {
   const amount: number = 70;
   const maxForce: number = 99999;
   const maxSpeed: number = 99999;
-  const boidViewRange: number = 100;
-  const boidSize = 17;
+  let boidViewRange: number;
   let chosenBoidID: number;
 
   // Blink
   const switchInterval: number = 1000;
   let showingAll: boolean;
   let lastSwitchTime: number = 0;
-
+  let boidSize: number;
   let ranSetup = false;
 
   p.windowResized = (): void => {
@@ -227,6 +225,8 @@ const sketch = (p: p5) => {
       boids = createBoids(amount);
       chosenBoidID = pickRandomBoid(boids);
     }
+    boidSize = 17 * common.scaleFactor;
+    boidViewRange = 100 * common.scaleFactor;
     ranSetup = true;
   }; // }}}
 
@@ -254,7 +254,7 @@ const sketch = (p: p5) => {
           separationVec(boid, boids).setMag(1.3),
           alignmentVec(boid, boids).setMag(1),
           cohesionVec(boid, boids).setMag(1),
-          awayFromEdgesVec(boid, 100).setMag(0.8),
+          awayFromEdgesVec(boid, 50 * common.scaleFactor).setMag(1.2),
         ]),
       )
       .map(updateBoid);

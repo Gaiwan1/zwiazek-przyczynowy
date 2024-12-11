@@ -42,8 +42,8 @@ export function updateCanvasDimensions(p: p5): Dimensions {
 
 export function sharedSetup(p: p5): void {
   const { width, height } = updateCanvasDimensions(p);
-  // scaleFactor = (baseWidth + baseHeight) / (width + baseHeight);
-  scaleFactor = (baseWidth + baseHeight) / (width + baseHeight);
+  // scaleFactor = 0.001 * (width + height);
+  scaleFactor = 1 / ((baseWidth + baseHeight) / (width + height));
   p.pixelDensity(window.devicePixelRatio);
   p.setAttributes("alpha", false);
   p.setAttributes("antialias", true);
