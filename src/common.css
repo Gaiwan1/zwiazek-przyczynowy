@@ -1,24 +1,22 @@
-.montserrat-body,
+.body-font,
 .buttonText,
 :root {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
+  font-family: "IBM Plex Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.montserrat-header,
+.header-font,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  line-height: 1;
+  font-family: "IBM Plex Sans Condensed", sans-serif;
   font-weight: 400;
   font-style: normal;
+  line-height: 1;
 }
 
 *,
@@ -27,7 +25,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  /* outline: 2px solid green; */
+  outline: 2px solid green;
 }
 
 :root {
@@ -42,8 +40,8 @@ body {
 
   --border-weight: var(--clr-main) solid 0.2em;
   /* --heading-size: clamp(2em, 5vw + 1em, 5em); */
-  --heading-size: 4.7083em;
-  --body-size: 1.1667em;
+  --heading-size: 3.4em;
+  --body-size: 1.5em;
 
   background: var(--clr-background);
   color: var(--clr-main);
@@ -116,6 +114,7 @@ p {
 
 h1 {
   text-align: center;
+  line-height: 1;
   margin: 0.5rem 0;
   font-size: var(--heading-size);
 }
