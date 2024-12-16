@@ -15,7 +15,7 @@ h5,
 h6 {
   font-family: "IBM Plex Sans Condensed", sans-serif;
   font-weight: 400;
-  font-style: normal;
+  font-style: bold;
   line-height: 1;
 }
 
@@ -25,7 +25,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  outline: 2px solid green;
+  /* outline: 2px solid green; */
 }
 
 :root {
@@ -37,11 +37,12 @@ body {
   --clr-main: #000000;
   --clr-background: #ffffff;
   --clr-accent: #ff002a;
+  --border-size: 6px;
 
-  --border-weight: var(--clr-main) solid 0.2em;
+  --border-weight: var(--clr-main) solid var(--border-size);
   /* --heading-size: clamp(2em, 5vw + 1em, 5em); */
-  --heading-size: 3.4em;
-  --body-size: 1.5em;
+  --heading-size: 3.3em;
+  --body-size: 1.9em;
 
   background: var(--clr-background);
   color: var(--clr-main);
@@ -58,15 +59,6 @@ body {
   flex-direction: column;
 }
 
-@media (min-width: 1200px) and (min-height: 1200px) {
-  .container {
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-  }
-}
-
 .canvas-wrapper {
   display: flex;
   justify-content: center;
@@ -76,14 +68,19 @@ body {
 }
 
 .p5Canvas {
+  flex-shrink: 0;
+  /* max-height: min(140vw, calc(100svh - 0rem)) !important; */
+  /* width: auto !important; */
+  /* height: 1000px !important; */
+  /* width: 1000px !important; */
+  /* aspect-ratio: attr(width) / attr(height); */
   /* border: var(--border-weight); */
-  max-height: 100svh;
-  flex-shrink: 1;
+  /* max-height: 100svh; */
   /* max-height: min(140vw, calc(100svh - 0rem)) !important; */
   /* min-height: calc(50svh + 50svw) !important; */
   width: 100svw !important;
   height: 100svh !important;
-  /* aspect-ratio: attr(width) / attr(height); */
+  aspect-ratio: 1000 / 700;
 }
 
 @media (max-width: 61vb) {
@@ -117,6 +114,45 @@ h1 {
   line-height: 1;
   margin: 0.5rem 0;
   font-size: var(--heading-size);
+}
+
+@media (min-width: 1600px) {
+  p {
+    max-width: 53ch;
+    text-align: left;
+    margin: 0 auto;
+    padding-right: 0svh;
+    padding-left: 0svh;
+  }
+
+  .p5Canvas {
+    /* border: var(--border-weight); */
+    /* max-height: 100svh; */
+    flex-shrink: 0;
+    flex-grow: 0;
+    /* max-height: min(140vw, calc(100svh - 0rem)) !important; */
+    /* min-height: calc(50svh + 50svw) !important; */
+    /* height: 70svw !important; */
+    /* height: 100svh !important; */
+    /* height: 70svh; */
+    /* max-height: min(140vw, calc(100svh - 0rem)) !important; */
+    height: 100svh !important;
+    width: auto !important;
+    aspect-ratio: 700 / 1000;
+  }
+  .sideText {
+    flex-shrink: 1;
+  }
+  .container {
+    display: flex;
+    gap: 1svw;
+    padding-left: 4svh;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+  }
 }
 
 html {

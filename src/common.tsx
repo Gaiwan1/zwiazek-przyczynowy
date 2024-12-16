@@ -1,7 +1,8 @@
 import p5, { Vector } from "p5";
 
-export const outlineSize: number = 2.5;
 export const style: CSSStyleDeclaration = getComputedStyle(document.body);
+export const outlineSize: number = parseFloat(style.getPropertyValue("--border-size")) * 0.7;
+// export const outlineSize: number = 2.5;
 export const mainColor: string = style.getPropertyValue("--clr-main");
 export const backgroundColor: string =
   style.getPropertyValue("--clr-background");

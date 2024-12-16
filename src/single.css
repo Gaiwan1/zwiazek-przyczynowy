@@ -1,3 +1,13 @@
 html{
   padding-bottom: 2svh;
 }
+
+@media (min-width: 1600px) {
+  html{
+    padding-bottom: 0svh;
+  }
+
+  h1 {
+    text-align: left;
+  }
+}

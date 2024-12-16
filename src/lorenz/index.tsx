@@ -12,7 +12,7 @@ const sketch = (p: p5) => {
   const ρ = 28;
   const β = 8.0 / 3;
 
-  const randStart = 5;
+  const randStart = 10;
   const randDifference = 0.005;
 
   let x = p.random(-randStart, randStart);
@@ -39,7 +39,7 @@ const sketch = (p: p5) => {
 
   p.setup = (): void => {
     common.sharedSetup(p);
-    scale = 12 * common.scaleFactor;
+    scale = 14 * common.scaleFactor;
   };
 
   p.windowResized = (): void => {
@@ -96,6 +96,10 @@ const sketch = (p: p5) => {
     }
     p.endShape();
     // p.pop();
+
+
+    // const outlineSize: any = common.style.getPropertyValue("--border-size");
+    console.log(common.outlineSize);
   };
 };
 
