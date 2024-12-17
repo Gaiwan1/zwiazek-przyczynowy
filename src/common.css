@@ -40,11 +40,12 @@ body {
   --clr-accent: #ff002a;
   --border-size: 0.25em;
 
+  --body-size: 1.05rem;
+  --heading-size: 2.5rem;
   --border-weight: var(--clr-main) solid var(--border-size);
-  --heading-size: clamp(2rem, 3vw + 1rem, 5rem);
+  /* --heading-size: clamp(2rem, 3vw + 1rem, 5rem); */
   /* --body-size: clamp(1rem, 0.20vw + 1rem, 1.1rem); */
   /* --heading-size: 2.3rem + 1 rem; */
-  --body-size: 1.05rem;
   background: var(--clr-background);
   color: var(--clr-main);
   font-size: var(--body-size);
@@ -118,7 +119,10 @@ h1 {
   font-size: var(--heading-size);
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 63rem) {
+  h1 {
+    text-align: left;
+  }
   p {
     max-width: 53ch;
     text-align: left;
