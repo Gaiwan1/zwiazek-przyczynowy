@@ -15,7 +15,7 @@ h4,
 h5,
 h6 {
   font-family: "IBM Plex Sans Condensed", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
   line-height: 1;
 }
@@ -131,6 +131,10 @@ h1 {
     padding-left: 0svh;
   }
 
+  .canvas-wrapper {
+    width: 60svw;
+  }
+
   .p5Canvas {
     /* border: var(--border-weight); */
     /* max-height: 100svh; */
@@ -144,7 +148,7 @@ h1 {
     /* max-height: min(140vw, calc(100svh - 0rem)) !important; */
     height: 100svh !important;
     width: auto !important;
-    aspect-ratio: 700 / 1000;
+    aspect-ratio: auto;
   }
   .sideText {
     flex-shrink: 1;
@@ -153,7 +157,7 @@ h1 {
     display: flex;
     gap: 3svw;
 
-    padding-inline: 2svh;
+    padding-left: 4svh;
     /* padding-right: 4svh; */
     /* padding-left: 4svh; */
     flex-direction: row-reverse;
@@ -161,6 +165,9 @@ h1 {
     align-content: center;
     align-items: center;
     justify-items: center;
+  }
+  html{
+    padding-bottom: 0svh;
   }
 }
 

@@ -2,7 +2,7 @@ html{
   padding-bottom: 2svh;
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 63rem) {
   html{
     padding-bottom: 0svh;
   }
