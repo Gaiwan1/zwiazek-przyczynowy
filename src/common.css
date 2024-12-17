@@ -120,9 +120,6 @@ h1 {
 }
 
 @media (min-width: 63rem) {
-  h1 {
-    text-align: left;
-  }
   p {
     max-width: 53ch;
     text-align: left;
