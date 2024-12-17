@@ -1,12 +1,17 @@
 import p5, { Vector } from "p5";
 
-export const style: CSSStyleDeclaration = getComputedStyle(document.body);
-export const outlineSize: number = parseFloat(style.getPropertyValue("--border-size")) * 0.7;
-// export const outlineSize: number = 2.5;
-export const mainColor: string = style.getPropertyValue("--clr-main");
-export const backgroundColor: string =
-  style.getPropertyValue("--clr-background");
-export const accentColor: string = style.getPropertyValue("--clr-accent");
+// export const style: CSSStyleDeclaration = getComputedStyle(document.body);
+
+// export let outlineSize: number = 2.5;
+export let style: CSSStyleDeclaration = getComputedStyle(document.body);
+export let em: number = parseFloat(style.fontSize);
+export let outlineSizeInCSS: number = parseFloat(
+  style.getPropertyValue("--border-size"),
+);
+export let outlineSize: number = outlineSizeInCSS * em;
+export let mainColor: string = style.getPropertyValue("--clr-main");
+export let backgroundColor: string = style.getPropertyValue("--clr-background");
+export let accentColor: string = style.getPropertyValue("--clr-accent");
 
 export const baseWidth: number = 700;
 export const baseHeight: number = 1000;
@@ -43,6 +48,14 @@ export function updateCanvasDimensions(p: p5): Dimensions {
 
 export function sharedSetup(p: p5): void {
   const { width, height } = updateCanvasDimensions(p);
+  let style = getComputedStyle(document.body);
+  let em = parseFloat(style.fontSize);
+  let outlineSizeInCSS = parseFloat(style.getPropertyValue("--border-size"));
+  let outlineSize = outlineSizeInCSS * em;
+  let mainColor = style.getPropertyValue("--clr-main");
+  let backgroundColor = style.getPropertyValue("--clr-background");
+  let accentColor = style.getPropertyValue("--clr-accent");
+
   // scaleFactor = 0.001 * (width + height);
   scaleFactor = 1 / ((baseWidth + baseHeight) / (width + height));
   p.pixelDensity(window.devicePixelRatio);

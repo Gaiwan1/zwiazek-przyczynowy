@@ -18,7 +18,7 @@ a.fillDiv {
 h1 {
   line-height: 1;
   padding-block: 2vh;
-  font-size: clamp(2em, 5vw + 0.5em, 4em);
+  font-size: clamp(2.5em, 5vw + 0.5em, 3.5em);
 }
 
 .buttonText {
@@ -30,8 +30,6 @@ h1 {
 
 .button {
   box-shadow: 5px 5px 0px 0px var(--clr-main);
-  /* box-shadow: 10px 10px 0 #ffd217, -20px 20px 0 #5ac7ff, 30px -30px 0 #ff0000, -40px -40px 0 #00ff00, 40px 30px 0 #440880;  */
-  /* box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2); */
   border: clamp(0.1em, 0.5vb + 0.5vi, 1em) solid black;
   border: var(--border-weight);
   flex-shrink: 1;

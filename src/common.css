@@ -37,12 +37,12 @@ body {
   --clr-main: #000000;
   --clr-background: #ffffff;
   --clr-accent: #ff002a;
-  --border-size: 6px;
+  --border-size: 0.2em;
 
   --border-weight: var(--clr-main) solid var(--border-size);
   /* --heading-size: clamp(2em, 5vw + 1em, 5em); */
-  --heading-size: 3.3em;
-  --body-size: 1.9em;
+  --heading-size: 2.3em;
+  --body-size: 1.3em;
 
   background: var(--clr-background);
   color: var(--clr-main);
@@ -107,6 +107,7 @@ p {
   margin: 0 auto;
   padding-right: 5svw;
   padding-left: 5svw;
+  font-size: var(--body-size);
 }
 
 h1 {
