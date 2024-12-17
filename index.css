@@ -16,9 +16,10 @@ a.fillDiv {
 }
 
 h1 {
+  text-align: center;
   line-height: 1;
   padding-block: 2svh;
-  font-size: clamp(2.5em, 5vw + 0.5em, 3.5em);
+  font-size: clamp(3em, 6vw + 1em, 5em);
 }
 
 .buttonText {
@@ -29,9 +30,9 @@ h1 {
 }
 
 .button {
-  box-shadow: 5px 5px 0px 0px var(--clr-main);
-  border: clamp(0.1em, 0.5vb + 0.5vi, 1em) solid black;
-  border: var(--border-weight);
+  /* box-shadow: 5px 5px 0px 0px var(--clr-main); */
+  /* border: clamp(0.1em, 0.5vb + 0.5vi, 1em) solid black; */
+  /* border: var(--border-weight); */
   flex-shrink: 1;
   flex-basis: 0;
   display: flex;

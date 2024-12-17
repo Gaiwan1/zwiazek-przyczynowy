@@ -163,6 +163,9 @@ h1 {
     align-items: center;
     justify-items: center;
   }
+  h1 {
+    text-align: left;
+  }
   html{
     padding-bottom: 0svh;
   }
