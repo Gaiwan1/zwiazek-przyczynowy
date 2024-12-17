@@ -118,7 +118,7 @@ h1 {
   font-size: var(--heading-size);
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 60rem) {
   p {
     max-width: 53ch;
     text-align: left;
@@ -147,8 +147,11 @@ h1 {
   }
   .container {
     display: flex;
-    gap: 1svw;
-    padding-left: 4svh;
+    gap: 3svw;
+
+    padding-inline: 2svh;
+    /* padding-right: 4svh; */
+    /* padding-left: 4svh; */
     flex-direction: row-reverse;
     justify-content: center;
     align-content: center;
