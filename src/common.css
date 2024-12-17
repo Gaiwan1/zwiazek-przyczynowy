@@ -4,6 +4,7 @@
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
+  line-height: 1;
 }
 
 .header-font,
@@ -15,7 +16,7 @@ h5,
 h6 {
   font-family: "IBM Plex Sans Condensed", sans-serif;
   font-weight: 400;
-  font-style: bold;
+  font-style: normal;
   line-height: 1;
 }
 
@@ -37,16 +38,15 @@ body {
   --clr-main: #000000;
   --clr-background: #ffffff;
   --clr-accent: #ff002a;
-  --border-size: 0.2em;
+  --border-size: 0.25em;
 
   --border-weight: var(--clr-main) solid var(--border-size);
   /* --heading-size: clamp(2em, 5vw + 1em, 5em); */
   --heading-size: 2.3em;
-  --body-size: 1.3em;
-
+  --body-size: 1.1em;
   background: var(--clr-background);
   color: var(--clr-main);
-  font-size: var(--body-size);
+  /* font-size: var(--body-size); */
   line-height: 1.5;
 }
 
