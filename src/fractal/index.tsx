@@ -4,10 +4,11 @@ import * as common from "../common.tsx";
 import p5, { Vector } from "p5";
 import * as math from "mathjs";
 
+let recursions_slider: any;
+let mappingRange: number;
+
 const sketch = (p: p5) => {
-  const pointSize = 10;
-  const iterations = 10;
-  const mappingRange = 2;
+  const iterations = 50;
   const cConstant: math.Complex = math.complex(1, 1);
 
   // Stupid math.js library returns some broken internal type from calculations
@@ -35,25 +36,30 @@ const sketch = (p: p5) => {
   }
 
   p.setup = (): void => {
-    common.sharedSetup(p);
-  };
-
-  p.windowResized = (): void => {
-    p.setup();
+    p.createCanvas(400, 400);
+    p.noLoop();
+    p.createP()
+      .position(20, p.height + 30)
+      .html("Scale");
+    recursions_slider = p
+      .createSlider(0, 30, 5, 0.1)
+      .position(20, p.height + 50)
+      .size(p.width + 200, 40);
+    recursions_slider.changed(p.draw);
   };
 
   p.draw = (): void => {
-    p.translate(p.width / 2, p.height / 2);
-    common.sharedDraw(p);
     p.loadPixels();
+    mappingRange = parseInt(recursions_slider.value() as string);
+    console.log(mappingRange);
     for (let x = 0; x < p.width; x++) {
       for (let y = 0; y < p.height; y++) {
-        // const xMapped = p.map(x, 0, p.width, -mappingRange, mappingRange);
-        // const yMapped = p.map(y, 0, p.height, -mappingRange, mappingRange);
+        const xMapped = p.map(x, 0, p.width, -mappingRange, mappingRange);
+        const yMapped = p.map(y, 0, p.height, -mappingRange, mappingRange);
 
         let n = 0;
-        let c = math.complex(p.width/10, p.height/10);
-        let z = math.complex(0, 0)
+        let c = math.complex(xMapped, yMapped);
+        let z = math.complex(0, 0);
         while (n < iterations) {
           const nextZ = mandelbrotPolynomial(z, c);
           if (getMag(z) > 16) {
@@ -63,7 +69,6 @@ const sketch = (p: p5) => {
           n++;
         }
         const brightness = p.map(n, 0, iterations, 255, 0);
-        // const brightness = 0;
         const colorVal = p.color(brightness);
         p.set(x, y, colorVal);
       }
