@@ -101,25 +101,28 @@ const sketch = (p: p5) => {
 
     shaderProgram = p.createShader(vertShader, fragShader);
     p.shader(shaderProgram);
-    p.noLoop();
 
-    p.createP()
-      .position(20, p.height - 30)
-      .html("Scale");
-
-    recursions_slider = p
-      .createSlider(0, 30, 5, 0.1)
-      .position(20, p.height - 50)
-      .size(p.width + 100, 40);
-
-    recursions_slider.changed(p.draw);
+    // p.createP()
+    //   .position(20, p.height - 30)
+    //   .html("Scale");
+    //
+    // recursions_slider = p
+    //   .createSlider(0, 30, 5, 0.1)
+    //   .position(20, p.height - 50)
+    //   .size(p.width + 100, 40);
+    //
+    // recursions_slider.changed(p.draw);
   };
 
   p.draw = (): void => {
-    mappingRange = parseFloat(recursions_slider.value() as string);
-    shaderProgram.setUniform("uRange", mappingRange);
+    // mappingRange = parseFloat(recursions_slider.value() as string);
+    mappingRange = 5;
+    const frequency = 0.1
+    const waveVal = p.cos(p.frameCount * frequency) * 3
+    shaderProgram.setUniform("uRange", waveVal);
 
     p.rect(-p.width / 2, -p.height / 2, p.width, p.height);
+    // p.noLoop();
   };
 
   p.windowResized = (): void => {

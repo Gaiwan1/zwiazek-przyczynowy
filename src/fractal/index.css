@@ -3,12 +3,14 @@
 
 .canvas-wrapper {
   display: flex;
-  justify-content: right;
-  align-items: right;
+  justify-content: center;
+  align-items: center;
 }
 
-/* .p5Canvas { */
-/*   max-width: 100% !important; */
-/*   max-height: 100vh !important; */
-/*   aspect-ratio: 1/1; */
-/* } */
+.p5Canvas {
+  max-width: min(100vh, 100vw) !important;
+  max-height: min(100vh, 100vw) !important;
+  aspect-ratio: 1/1 !important;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
