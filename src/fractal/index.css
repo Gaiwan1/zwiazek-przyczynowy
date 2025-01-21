@@ -1,2 +1,14 @@
 @import url("../common.css");
 @import url("../single.css");
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+/* .p5Canvas { */
+/*   max-width: 100% !important; */
+/*   max-height: 100vh !important; */
+/*   aspect-ratio: 1/1; */
+/* } */
