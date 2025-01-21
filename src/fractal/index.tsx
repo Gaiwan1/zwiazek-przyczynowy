@@ -37,6 +37,10 @@ const sketch = (p: p5) => {
 
   p.setup = (): void => {
     p.createCanvas(400, 400);
+    const element = document.getElementById("fillCanvas");
+    if (element !== null) {
+      element.remove();
+    }
     p.noLoop();
     p.createP()
       .position(20, p.height + 30)

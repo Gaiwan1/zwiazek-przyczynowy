@@ -35,11 +35,13 @@ const sketch = (p: p5) => {
     return p.abs(x) + p.abs(y);
   }
 
-  // let angle = 0;
-
   p.setup = (): void => {
+    const element = document.getElementById("fillCanvas");
+    if (element !== null) {
+      element.remove();
+    }
     common.sharedSetup(p);
-    scale = 14 * common.scaleFactor;
+    scale = 12 * common.scaleFactor;
   };
 
   p.windowResized = (): void => {

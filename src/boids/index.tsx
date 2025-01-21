@@ -219,6 +219,10 @@ const sketch = (p: p5) => {
   };
 
   p.setup = (): void => {
+    const element = document.getElementById("fillCanvas");
+    if (element !== null) {
+      element.remove();
+    }
     common.sharedSetup(p);
 
     if (ranSetup === false) {
