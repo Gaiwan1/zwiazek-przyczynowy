@@ -27,7 +27,7 @@ const sketch = (p: p5) => {
     precision highp float;
     varying vec2 vTexCoord;
     uniform float uRange;
-    #define MAX_ITERATIONS 7
+    #define MAX_ITERATIONS 35
     #define TOLERANCE 0.00001
 
     vec2 complex_mul(vec2 a, vec2 b) {
@@ -117,7 +117,7 @@ const sketch = (p: p5) => {
   p.draw = (): void => {
     // mappingRange = parseFloat(recursions_slider.value() as string);
     mappingRange = 5;
-    const frequency = 0.1
+    const frequency = 0.01
     const waveVal = p.cos(p.frameCount * frequency) * 3
     shaderProgram.setUniform("uRange", waveVal);
 
