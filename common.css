@@ -1,7 +1,7 @@
 .body-font,
 .buttonText,
 :root {
-  font-family: "IBM Plex Mono", sans-serif;
+  font-family: "DM sans", sans-serif;
   font-weight: 400;
   font-style: normal;
   line-height: 1;
@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "IBM Plex Mono", sans-serif;
+  font-family: "DM sans", sans-serif;
   font-weight: 500;
   font-style: normal;
   line-height: 1;
@@ -40,7 +40,7 @@ body {
   --clr-accent: #ff002a;
   --border-size: 0.25em;
 
-  --body-size: 1.05rem;
+  --body-size: 1.10rem;
   --heading-size: 2.5rem;
   --border-weight: var(--clr-main) solid var(--border-size);
   /* --heading-size: clamp(2rem, 3vw + 1rem, 5rem); */

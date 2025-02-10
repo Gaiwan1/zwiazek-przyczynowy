@@ -27,7 +27,7 @@ const sketch = (p: p5) => {
     precision highp float;
     varying vec2 vTexCoord;
     uniform float uRange;
-    #define MAX_ITERATIONS 35
+    #define MAX_ITERATIONS 30
     #define TOLERANCE 0.00001
 
     vec2 complex_mul(vec2 a, vec2 b) {
