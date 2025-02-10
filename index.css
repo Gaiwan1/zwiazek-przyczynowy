@@ -19,7 +19,7 @@ a.fillDiv {
 h1 {
 
   text-align: center;
-  line-height: 1;
+  line-height: 1.2;
   padding-block: 2svh;
   /* font-size: clamp(2em, 4vw + 1em, 4em); */
   font-size: clamp(2rem, 5vw, 10vh)

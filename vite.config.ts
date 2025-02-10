@@ -21,7 +21,7 @@ export default defineConfig({
   plugins: [
     // viteSingleFile()
     webfontDownload([
-      "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap",
+      "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap",
     ]),
   ],
 });
