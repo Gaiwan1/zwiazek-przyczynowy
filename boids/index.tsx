@@ -200,7 +200,7 @@ const sketch = (p: p5) => {
 
   // Settings {{{
   let boids: Boid[];
-  const speed: number = 4;
+  const speed: number = 7;
   const amount: number = 70;
   const maxForce: number = 99999;
   const maxSpeed: number = 99999;
