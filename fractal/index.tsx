@@ -18,7 +18,7 @@ const sketch = (p: p5) => {
       gl_Position = positionVec4;
 
       // Flip horizontally by negating the x coordinate
-      vTexCoord = vec2(1.0 - aTexCoord.x, aTexCoord.y);
+      vTexCoord = vec2(aTexCoord.x, aTexCoord.y);
     }
   `;
 
@@ -116,8 +116,8 @@ const sketch = (p: p5) => {
   p.draw = (): void => {
     // mappingRange = parseFloat(recursions_slider.value() as string);
     mappingRange = 5;
-    const frequency = 0.01
-    const waveVal = p.cos(p.frameCount * frequency) * 3
+    const frequency: number = 0.01
+    const waveVal: number = -p.abs(p.cos(p.frameCount * frequency) * 3)
     shaderProgram.setUniform("uRange", waveVal);
 
     p.rect(-p.width / 2, -p.height / 2, p.width, p.height);
