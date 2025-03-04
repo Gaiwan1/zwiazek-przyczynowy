@@ -2,7 +2,6 @@ import "./index.css";
 import * as common from "../common.tsx";
 import p5 from "p5";
 
-let recursions_slider: any;
 let mappingRange: number;
 let shaderProgram: p5.Shader;
 
