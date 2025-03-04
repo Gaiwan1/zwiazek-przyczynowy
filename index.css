@@ -26,7 +26,7 @@ h1 {
 }
 
 .buttonText {
-  font-size: clamp(2em, 10vw + 1em, 10em);
+  font-size: clamp(2rem, 10vw + 1em, 10rem);
   color: var(--clr-accent);
   padding-top: 3%; /* optical center */
   /* color: var(--clr-background); */
