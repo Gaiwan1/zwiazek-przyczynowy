@@ -1,2 +1,6 @@
 @import url("../common.css");
 @import url("../single.css");
+
+.p5Canvas {
+  aspect-ratio: 1/1;
+}

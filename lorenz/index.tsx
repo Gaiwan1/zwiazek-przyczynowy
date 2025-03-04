@@ -30,6 +30,7 @@ const sketch = (p: p5) => {
   let lorenz: p5.Vector[] = [];
   let lorenz2: p5.Vector[] = [];
   let scale: number;
+  let isMobile: boolean = false;
 
   function l1norm(x: number, y: number): number {
     return p.abs(x) + p.abs(y);
@@ -40,8 +41,12 @@ const sketch = (p: p5) => {
     if (element !== null) {
       element.remove();
     }
-    common.sharedSetup(p);
+    isMobile = !window.matchMedia("(min-width: 63rem)").matches;
+    common.sharedSetup(p, !isMobile);
     scale = 12 * common.scaleFactor;
+    if (isMobile) {
+      scale -= 1;
+    }
   };
 
   p.windowResized = (): void => {
@@ -99,9 +104,7 @@ const sketch = (p: p5) => {
     p.endShape();
     // p.pop();
 
-
     // const outlineSize: any = common.style.getPropertyValue("--border-size");
-    console.log(common.outlineSize);
   };
 };
 

@@ -7,6 +7,13 @@
   align-items: center;
 }
 
+/* Mobile layout */
+@media (orientation: portrait) {
+  .p5Canvas {
+    transform: rotate(-90deg)
+  }
+}
+
 .p5Canvas {
   max-width: min(100vh, 100vw) !important;
   max-height: min(100vh, 100vw) !important;

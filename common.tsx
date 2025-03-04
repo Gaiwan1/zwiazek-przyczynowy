@@ -45,7 +45,7 @@ export function updateCanvasDimensions(p: p5): Dimensions {
   //   };
 }
 
-export function sharedSetup(p: p5): void {
+export function sharedSetup(p: p5, lorenzMode: boolean = false): void {
   const { width, height } = updateCanvasDimensions(p);
   let style = getComputedStyle(document.body);
 
@@ -63,7 +63,12 @@ export function sharedSetup(p: p5): void {
   p.setAttributes("alpha", false);
   p.setAttributes("antialias", true);
   p.smooth();
-  p.createCanvas(width, height);
+  if (lorenzMode) {
+    const largestSize: number = p.max(width, height)
+    p.createCanvas(largestSize, largestSize);
+  } else {
+    p.createCanvas(width, height);
+  }
   p.colorMode(p.HSB, 100);
   p.frameRate(60);
 }

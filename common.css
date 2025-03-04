@@ -26,11 +26,10 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
-  /* outline: 2px solid green; */
+  outline: 2px solid green;
 }
 
 :root {
-  overflow-x: hidden;
   /* --clr-main: #040716; */
   /* --clr-background: #fcf7f2; */
   /* --clr-accent: #ff002a; */
@@ -40,8 +39,8 @@ body {
   --clr-accent: #ff002a;
   --border-size: 0.25rem;
 
-  --body-size: 1.30rem;
-  --heading-size: 2.7rem;
+  --body-size: 1.15rem;
+  --heading-size: 2.55rem;
   --border-weight: var(--clr-main) solid var(--border-size);
   /* --heading-size: clamp(2rem, 3vw + 1rem, 5rem); */
   /* --body-size: clamp(1rem, 0.20vw + 1rem, 1.1rem); */
@@ -92,10 +91,28 @@ body {
   aspect-ratio: 1000 / 700;
 }
 
+p {
+  max-width: 60ch;
+  text-align: justify;
+  margin: 0 auto;
+  padding-right: 5svw;
+  padding-left: 5svw;
+  font-size: var(--body-size);
+}
+
 /* Mobile layout */
 @media (max-width: 61vb) {
+  :root {
+    --body-size: calc(var(--body-size) - 0.5rem);
+    --heading-size: calc(var(--heading-size) - 0.5rem);
+  }
+
+  h1 {
+    padding-inline: 10px
+  }
   p {
     padding-left: 4svw;
+    text-align: left;
   }
   .canvas-wrapper {
     justify-content: top;
@@ -106,15 +123,6 @@ body {
   .container {
     padding-top: 0rem;
   }
-}
-
-p {
-  max-width: 60ch;
-  text-align: justify;
-  margin: 0 auto;
-  padding-right: 5svw;
-  padding-left: 5svw;
-  font-size: var(--body-size);
 }
 
 h1 {
@@ -139,7 +147,7 @@ h1 {
   }
 
   .p5Canvas {
-    flex-shrink: 0;
+    flex-shrink: 1;
     flex-grow: 0;
     /* max-height: min(140vw, calc(100svh - 0rem)) !important; */
     /* min-height: calc(50svh + 50svw) !important; */
@@ -151,9 +159,27 @@ h1 {
     width: auto !important;
     aspect-ratio: auto;
   }
+
+  .sideTextOuter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+
+    box-sizing: content-box;
+    height: 100svh;
+    flex-shrink: 1;
+    overflow-y: auto;
+  }
+
   .sideText {
     flex-shrink: 1;
+    padding: 30px;
+    overflow-y: auto !important;
   }
+
   .container {
     display: flex;
     gap: 3svw;
