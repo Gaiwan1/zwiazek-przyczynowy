@@ -92,6 +92,7 @@ body {
   aspect-ratio: 1000 / 700;
 }
 
+/* Mobile layout */
 @media (max-width: 61vb) {
   p {
     padding-left: 4svw;
@@ -124,6 +125,7 @@ h1 {
 }
 
 @media (min-width: 63rem) {
+/* Horizontal layout */
   p {
     max-width: 53ch;
     text-align: left;
