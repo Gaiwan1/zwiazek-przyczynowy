@@ -102,24 +102,29 @@ p {
 
 /* Mobile layout */
 @media (max-width: 61vb) {
-  :root {
-    --body-size: calc(var(--body-size) - 0.5rem);
-    --heading-size: calc(var(--heading-size) - 0.5rem);
-  }
+
+  /* :root { */
+  /*   --body-size: calc(var(--body-size) - 0.5rem); */
+  /*   --heading-size: calc(var(--heading-size) - 0.5rem); */
+  /* } */
 
   h1 {
     padding-inline: 10px
   }
+
   p {
+    font-size: calc(var(--body-size) - 0.1rem);
     padding-left: 4svw;
-    text-align: left;
+    /* text-align: left; */
   }
+
   .canvas-wrapper {
     justify-content: top;
     align-content: top;
     align-items: top;
     justify-items: top;
   }
+
   .container {
     padding-top: 0rem;
   }
